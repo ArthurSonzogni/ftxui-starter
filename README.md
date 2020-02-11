@@ -1,7 +1,9 @@
-Minimal starter project using the FTXUI library
-[FTXUI library](https://github.com/ArthurSonzogni/ftxui)
-
+ftxui-starter
+-------------
 [![Snap Status](https://build.snapcraft.io/badge/ArthurSonzogni/ftxui-starter.svg)](https://build.snapcraft.io/user/ArthurSonzogni/ftxui-starter)
+
+Minimal starter project using the [FTXUI library](https://github.com/ArthurSonzogni/ftxui)
+
 
 # Build instructions:
 ~~~bash
