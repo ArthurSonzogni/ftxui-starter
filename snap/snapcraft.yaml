@@ -26,6 +26,8 @@ parts:
         $SNAPCRAFT_PART_SRC
       make -j 4
       make install
+    build-packages:
+      - libssl1.0-dev
 
   ftxui-starter:
     after: [cmake]
