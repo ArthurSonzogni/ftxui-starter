@@ -17,7 +17,7 @@ parts:
     source: https://github.com/ArthurSonzogni/ftxui-starter
     source-type: git
     source-depth: 1
-    build-snaps: [cmake]
+    build-snaps: [cmake/stable]
     build-packages: [clang]
 
 passthrough:
