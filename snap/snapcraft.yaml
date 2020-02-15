@@ -19,6 +19,9 @@ parts:
     source-depth: 1
     build-snaps: [cmake/stable]
     build-packages: [clang]
+    configflags:
+      - "-DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL"
+      - "-DCMAKE_BUILD_TYPE=Release"
 
 passthrough:
   title: ftxui-starter
