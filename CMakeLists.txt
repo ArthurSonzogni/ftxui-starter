@@ -16,7 +16,19 @@ target_link_libraries(ftxui-starter
   PRIVATE ftxui::component # Not needed for this example.
 )
 
-set_target_properties(ftxui-starter PROPERTIES CXX_STANDARD 11)
-target_compile_options(ftxui-starter PRIVATE -Wall -Wextra -pedantic -Werror -W)
+# C++17 is used. We requires fold expressions at least.
+set_target_properties(ftxui-starter PROPERTIES CXX_STANDARD 17)
+
+# Set agressive warning options:
+if (MSVC)
+  target_compile_options(ftxui-starter PRIVATE "/W4")
+  target_compile_options(ftxui-starter PRIVATE "/WX")
+else()
+  target_compile_options(ftxui-starter PRIVATE "-Wall")
+  target_compile_options(ftxui-starter PRIVATE "-Wextra")
+  target_compile_options(ftxui-starter PRIVATE "-pedantic")
+  target_compile_options(ftxui-starter PRIVATE "-Werror")
+  target_compile_options(ftxui-starter PRIVATE "-Wno-sign-compare")
+endif()
 
 install(TARGETS ftxui-starter RUNTIME DESTINATION "bin")
