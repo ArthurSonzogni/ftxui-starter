@@ -1,6 +1,21 @@
 cmake_minimum_required (VERSION 3.11)
 
-add_subdirectory(third_party)
+# --- Fetch FTXUI --------------------------------------------------------------
+include(FetchContent)
+
+set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
+FetchContent_Declare(ftxui
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/ftxui
+  # Specify a GIT TAG here.
+)
+
+FetchContent_GetProperties(ftxui)
+if(NOT ftxui_POPULATED)
+  FetchContent_Populate(ftxui)
+  add_subdirectory(${ftxui_SOURCE_DIR} ${ftxui_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
+# ------------------------------------------------------------------------------
 
 project(ftxui-starter
   LANGUAGES CXX
@@ -18,17 +33,5 @@ target_link_libraries(ftxui-starter
 
 # C++17 is used. We requires fold expressions at least.
 set_target_properties(ftxui-starter PROPERTIES CXX_STANDARD 17)
-
-# Set agressive warning options:
-if (MSVC)
-  target_compile_options(ftxui-starter PRIVATE "/W4")
-  target_compile_options(ftxui-starter PRIVATE "/WX")
-else()
-  target_compile_options(ftxui-starter PRIVATE "-Wall")
-  target_compile_options(ftxui-starter PRIVATE "-Wextra")
-  target_compile_options(ftxui-starter PRIVATE "-pedantic")
-  target_compile_options(ftxui-starter PRIVATE "-Werror")
-  target_compile_options(ftxui-starter PRIVATE "-Wno-sign-compare")
-endif()
 
 install(TARGETS ftxui-starter RUNTIME DESTINATION "bin")
