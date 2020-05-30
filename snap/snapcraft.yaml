@@ -12,39 +12,15 @@ apps:
     command: ftxui-starter
 
 parts:
-  # Build cmake from source to get a recent version.
-  cmake:
-    source: https://github.com/Kitware/CMake
-    source-type: git
-    source-depth: 1
-    plugin: cmake
-    override-build: |
-      mkdir -p build
-      cd build
-      cmake \
-        -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_STAGE/cmake \
-        $SNAPCRAFT_PART_SRC
-      make -j 4
-      make install
-    build-packages:
-      - build-essential
-      - libssl-dev
-      - libncurses5-dev
-    stage-packages:
-      - libssl1.1
-      - libncurses5
-      - libtinfo5
-
-  #  https://github.com/ArthurSonzogni/ftxui-starter
   ftxui-starter:
-    after: [cmake]
     plugin: cmake
-    source: .
+    source: https://github.com/ArthurSonzogni/ftxui-starter
     source-type: git
     source-depth: 1
+    build-snaps: [cmake/latest/edge] # We need cmake >= 3.11
     override-build: |
-      $SNAPCRAFT_STAGE/cmake/bin/cmake \
-        -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL \
+      /snap/bin/cmake \
+        -DCMAKE_INSTALL_PREFIX=$SNAPCRAFT_PART_INSTALL/usr/local \
         -DCMAKE_BUILD_TYPE=Release \
         $SNAPCRAFT_PART_SRC
       make -j 4
