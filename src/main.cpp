@@ -4,7 +4,7 @@
 #include <ftxui/screen/screen.hpp>
 #include <ftxui/screen/string.hpp>
 
-int main(void) {
+int main() {
   using namespace ftxui;
 
   auto summary = [&] {
@@ -33,7 +33,7 @@ int main(void) {
   auto screen = Screen::Create(Dimension::Full(), Dimension::Fit(document));
   Render(screen, document);
 
-  std::cout << screen.ToString() << '\0' << std::endl;
+  std::cout << screen.ToString() << "\0\n";
 
   return EXIT_SUCCESS;
 }
