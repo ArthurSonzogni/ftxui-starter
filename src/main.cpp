@@ -33,7 +33,7 @@ int main() {
   auto screen = Screen::Create(Dimension::Full(), Dimension::Fit(document));
   Render(screen, document);
 
-  std::cout << screen.ToString() << "\0\n";
+  std::cout << screen.ToString() << '\0' << std::endl;
 
   return EXIT_SUCCESS;
 }
